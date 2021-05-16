@@ -9,6 +9,7 @@ const rootDir = __dirname;
 
 @Configuration({
   rootDir,
+  "port": process.env.PORT || 8080,
   acceptMimes: ["application/json"],
   mount: {
     "/api": `./src/controllers/*.ts`, // using componentScan
