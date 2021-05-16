@@ -12,7 +12,10 @@ const rootDir = __dirname;
   "port": process.env.PORT || 8080,
   acceptMimes: ["application/json"],
   mount: {
-    "/api": `./src/controllers/*.ts`, // using componentScan
+    // "/api": `./src/controllers/*.ts`, // using componentScan
+    "/manual": [
+      Calendar
+    ]
   }
 })
 export class Server {
