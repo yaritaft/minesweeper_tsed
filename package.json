@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "clean": "rimraf '{src,test}/**/*.{js,js.map}'",
-    "build": "./node_modules/.bin/tsc -b",
+    "build": "./node_modules/.bin/tsc -b && npm install -g typescript",
     "test": "yarn clean && yarn test:lint && yarn test:coverage",
     "test:unit": "cross-env NODE_ENV=test mocha",
     "test:coverage": "cross-env NODE_ENV=test nyc mocha",
