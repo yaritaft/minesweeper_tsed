@@ -8,9 +8,7 @@ async function bootstrap() {
   try {
     $log.debug("Start server...");
     const platform = await PlatformExpress.bootstrap(Server, {
-      DATABASE_URL: process.env.DATABASE_URL || config.DATABASE_URL,
-      PORT: process.env.PORT || 8080,
-      port: process.env.PORT || 8080,
+      DATABASE_URL: process.env.DATABASE_URL || config.DATABASE_URL
     });
 
     await platform.listen();
