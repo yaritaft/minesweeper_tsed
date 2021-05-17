@@ -34,20 +34,20 @@ const rootDir = __dirname;
     `${rootDir}/models/**/**.{ts,js}`,
     `${rootDir}/models/*.js`,
   ],
-  typeorm: [
-    {
-      name: "default",
-      synchronize: true,
-      type: "postgres",
-      url: process.env.DATABASE_URL || config.DATABASE_URL,
-      ssl: process.env.DATABASE_URL ? true : false,  // If env var is not set then it is dev
-      "entities": [ "__dirname/**/*.entity.js", Calendar],
-      "migrations": ["__dirname/migrations/**/*.js"],
-      subscribers: [
-        `${__dirname}/subscriber/*.js}`
-      ]
-    }
-  ]
+  // typeorm: [
+  //   {
+  //     name: "default",
+  //     synchronize: true,
+  //     type: "postgres",
+  //     url: process.env.DATABASE_URL || config.DATABASE_URL,
+  //     ssl: process.env.DATABASE_URL ? true : false,  // If env var is not set then it is dev
+  //     "entities": [ "__dirname/**/*.entity.js", Calendar],
+  //     "migrations": ["__dirname/migrations/**/*.js"],
+  //     subscribers: [
+  //       `${__dirname}/subscriber/*.js}`
+  //     ]
+  //   }
+  // ]
 })
 export class Server {
   @Inject()
