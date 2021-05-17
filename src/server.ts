@@ -15,9 +15,9 @@ const rootDir = __dirname;
 @Configuration({
   rootDir,
   debug: process.env.PORT !== undefined, // to check if it is dev
-  "port": process.env.PORT || 8080,
+  "port": process.env.PORT || 8080, // Because heroku automatically sets port.
   host : '0.0.0.0',
-  httpsPort: `0.0.0.0:${process.env.PORT || 8080}`,
+  // httpsPort: `0.0.0.0:${process.env.PORT || 8080}`,
   acceptMimes: ["application/json"],
   mount: {
     // "/api": `./src/controllers/*.ts`, // using componentScan
