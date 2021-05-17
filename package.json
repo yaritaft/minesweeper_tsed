@@ -15,7 +15,7 @@
     "travis:coveralls": "nyc report --reporter=text-lcov | coveralls",
     "tsc": "tsc --project tsconfig.json",
     "tsc:w": "tsc --project tsconfig.json -w",
-    "start": "tsc && node dist/index.js",
+    "start": "tsc -b && node dist/index.js",
     "docker:build": "yarn build && docker-compose build",
     "deploy": "exit 0",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
