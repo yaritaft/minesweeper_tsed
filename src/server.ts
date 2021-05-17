@@ -16,6 +16,7 @@ const rootDir = __dirname;
   rootDir,
   debug: process.env.PORT !== undefined, // to check if it is dev
   "port": process.env.PORT || 8080,
+  host : '0.0.0.0',
   acceptMimes: ["application/json"],
   mount: {
     // "/api": `./src/controllers/*.ts`, // using componentScan
