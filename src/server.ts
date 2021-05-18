@@ -4,9 +4,6 @@ import * as compress from "compression";
 import * as cookieParser from "cookie-parser";
 import * as methodOverride from "method-override";
 import "@tsed/typeorm";
-import {CalendarController} from "./controllers/CalendarController";
-import { Calendar } from './models/Calendar.entity';
-import { join } from "path";
 const config = require("dotenv").config({path: "./.env"});
 
 
@@ -18,14 +15,10 @@ const rootDir = __dirname;
   port: process.env.PORT || 8080, // Because heroku automatically sets port.
   acceptMimes: ["application/json"],
   mount: {
-    // "/api": `./src/controllers/*.ts`, // using componentScan
-    "/manual": [
-      Calendar,
-      CalendarController
-    ]
+    "/api": [`${rootDir}/controllers/*.js`] // using componentScan
   },
   componentsScan: [
-    `${rootDir}/services/**/**.{ts,js}`,
+    `${rootDir}/services/**/*.{ts,js}`,
   ],
   typeorm: [
     {
@@ -35,11 +28,11 @@ const rootDir = __dirname;
       url: process.env.DATABASE_URL || config.DATABASE_URL,
       ssl: process.env.DATABASE_URL ? true : false,  // If env var is not set then it is dev
       "entities": [ 
-        `${__dirname}/**/*.entity.js`
+        `${rootDir}/**/*.entity.js`
       ],
-      "migrations": [`${__dirname}/migrations/**/*.js`],
+      "migrations": [`${rootDir}/migrations/**/*.js`],
       subscribers: [
-        `${__dirname}/subscriber/*.js}`
+        `${rootDir}/subscriber/*.js}`
       ]
     }
   ]

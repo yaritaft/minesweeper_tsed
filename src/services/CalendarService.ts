@@ -1,9 +1,8 @@
-import {Configuration, Constant, Service} from "@tsed/di";
-import {AfterRoutesInit, BeforeRoutesInit, Injectable} from "@tsed/common";
+import { Service} from "@tsed/di";
+import {AfterRoutesInit, Injectable} from "@tsed/common";
 import {TypeORMService} from "@tsed/typeorm";
 import { Connection } from "typeorm";
 import { Calendar } from "../models/Calendar.entity";
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 
 import "reflect-metadata";
 
