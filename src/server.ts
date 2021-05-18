@@ -14,7 +14,7 @@ const rootDir = __dirname;
 
 @Configuration({
   rootDir,
-  debug: process.env.PORT !== undefined, // to check if it is dev
+  debug: process.env.PORT === undefined, // to check if it is dev
   port: process.env.PORT || 8080, // Because heroku automatically sets port.
   acceptMimes: ["application/json"],
   mount: {
@@ -25,13 +25,7 @@ const rootDir = __dirname;
     ]
   },
   componentsScan: [
-    "${rootDir}/services/**/*.ts",
-    "${rootDir}/services/**/*.js",
-    "src/models/**/*.js",
-    "./src/models/**/*.ts",
     `${rootDir}/services/**/**.{ts,js}`,
-    `${rootDir}/models/**/**.{ts,js}`,
-    `${rootDir}/models/*.js`,
   ],
   typeorm: [
     {
@@ -40,8 +34,10 @@ const rootDir = __dirname;
       type: "postgres",
       url: process.env.DATABASE_URL || config.DATABASE_URL,
       ssl: process.env.DATABASE_URL ? true : false,  // If env var is not set then it is dev
-      "entities": [ "__dirname/**/*.entity.js", Calendar],
-      "migrations": ["__dirname/migrations/**/*.js"],
+      "entities": [ 
+        `${__dirname}/**/*.entity.js`
+      ],
+      "migrations": [`${__dirname}/migrations/**/*.js`],
       subscribers: [
         `${__dirname}/subscriber/*.js}`
       ]
