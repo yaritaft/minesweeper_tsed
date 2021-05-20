@@ -54,7 +54,7 @@ export class GameCoreService {
     }
     
     checkWonGame (game: Game):boolean {
-        for(const rows of game.matrix){
+        for(const rows of game.matrix.matrix){
             for (const cell of rows){
                 if (!cell.mine && cell.state !== CellState.Checked){
                     return false;
@@ -67,11 +67,11 @@ export class GameCoreService {
     }
     
     clickCell(game: Game, x: number, y: number): Game {
-      if (game.matrix[x][y].mine) {
+      if (game.matrix.matrix[x][y].mine) {
         return this.clickMine(game);
       }
-      this.setCellStatus(game.matrix, x, y, CellState.Checked);
-      this.clickSafeCell(game.matrix, x, y);
+      this.setCellStatus(game.matrix.matrix, x, y, CellState.Checked);
+      this.clickSafeCell(game.matrix.matrix, x, y);
       this.checkWonGame(game);
       return game;
     }
@@ -105,7 +105,7 @@ export class GameCoreService {
     
     setMinesInGame (cellCoordinates: CellCoordinates[], game: Game): Game {
       cellCoordinates.map((cellCoordinate) => {
-        game.matrix[cellCoordinate.x][cellCoordinate.y].mine = true;
+        game.matrix.matrix[cellCoordinate.x][cellCoordinate.y].mine = true;
       });
       return game;
     }
@@ -135,7 +135,9 @@ export class GameCoreService {
       const randomCells = this.generateRandomMineCells(amountOfMines, rows, columns);
       const matrixCellsWithoutMines = this.createMatrixCellsWithoutMines(rows, columns);
       const gameWithoutMines: Game = {
-        matrix: matrixCellsWithoutMines,
+        matrix: {
+          matrix: matrixCellsWithoutMines,
+        },
         gameId: "1", // TODO: YARI SET UP UUID HERE
         state: GameState.InProgress,
         amountOfMines,

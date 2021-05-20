@@ -25,10 +25,12 @@ export enum CellState {
   
   @Entity()
   export class Game {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn("uuid")
     gameId: string;
-    @Column('simple-array', { array: true })
-    matrix?: Cell[][];
+    @Column({type: 'jsonb', nullable: true})
+    matrix?: {
+      matrix: Cell[][] 
+    };
     @Column()
     state: GameState;
     @Column()
