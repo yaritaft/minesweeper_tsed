@@ -27,7 +27,7 @@ export enum CellState {
   export class Game {
     @PrimaryGeneratedColumn()
     gameId: string;
-    @Column()
+    @Column('simple-array', { array: true })
     matrix?: Cell[][];
     @Column()
     state: GameState;
