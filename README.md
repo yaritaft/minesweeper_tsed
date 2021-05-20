@@ -1,11 +1,11 @@
 # Table of Contents
 
 - [Author](#Author)
+- [Decisions](#Decisions)
 - [Architecture](#Architecture)
 - [Language](#Language)
 - [Database](#Database)
 - [Framework](#Framework)
-- [Decisions](#Decisions)
 - [Deployment](#Deployment)
 - [DataStructure](#DataStructure)
 - [Testing](#Testing)
