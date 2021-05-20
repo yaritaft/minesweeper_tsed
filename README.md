@@ -55,7 +55,7 @@ git push heroku master
 
 ## DataStructure
 
-![](https://github.com/yaritaft/intive/blob/master/images/class_diagram.jpg)
+![](https://github.com/yaritaft/minesweeper_tsed/blob/master/documentation/Selection_248.png)
 
 ## Testing
 
