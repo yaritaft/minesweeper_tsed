@@ -44,6 +44,7 @@ Heroku was selected as cloud provider because it is really easy to use, with Pro
 Create a .env file by copy and pasting .envdevcopy file content.
 ```
 chmod 711 ./up
+./up
 npm run test
 ```
 
