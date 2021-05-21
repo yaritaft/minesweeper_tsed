@@ -15,7 +15,7 @@ const rootDir = __dirname;
   port: process.env.PORT || 8080, // Because heroku automatically sets port.
   acceptMimes: ["application/json"],
   mount: {
-    "/api": [`${rootDir}/controllers/*.js`] // using componentScan
+    "/api": [`${rootDir}/controllers/*.{ts,js}`] // using componentScan
   },
   componentsScan: [
     `${rootDir}/services/**/*.{ts,js}`,
@@ -28,7 +28,8 @@ const rootDir = __dirname;
       url: process.env.DATABASE_URL || config.DATABASE_URL,
       ssl: process.env.DATABASE_URL ? true : false,  // If env var is not set then it is dev
       "entities": [ 
-        `${rootDir}/**/*.entity.js`
+        `${rootDir}/**/*.entity.js`,
+        `${rootDir}/**/*.entity.{ts,js}`
       ],
       "migrations": [`${rootDir}/migrations/**/*.js`],
       subscribers: [

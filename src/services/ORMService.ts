@@ -1,7 +1,7 @@
 import { Service} from "@tsed/di";
 import {AfterRoutesInit, Injectable} from "@tsed/common";
 import {TypeORMService} from "@tsed/typeorm";
-import { Connection } from "typeorm";
+import { Connection, EntityTarget } from "typeorm";
 import { Calendar } from "../models/Calendar.entity";
 
 import "reflect-metadata";
@@ -9,7 +9,7 @@ import "reflect-metadata";
 @Service()
 @Injectable()
 export class ORMService  implements AfterRoutesInit {
-  private connection: Connection;
+  public connection: Connection;
   constructor(private typeORMService: TypeORMService) {
   }
   $afterRoutesInit() {
@@ -20,14 +20,28 @@ export class ORMService  implements AfterRoutesInit {
       return this.connection;
   }
 
-  async find(): Promise<Calendar[]> {
-    let aCalendar = new Calendar();
-    aCalendar._id="444";
-    await this.connection.manager.save(aCalendar).catch(e=>{console.log(e)});
-    const calendars = await this.connection.manager.getRepository(Calendar).find({});
-    console.log("Loaded users: ", calendars);
+  async upsert<T>(dataEntityInstance: T): Promise<T | undefined> {
+    try {
+      const result = await this.connection.manager.save<T>(dataEntityInstance);
+      console.log("Succesfully created.");
+      return result;
+    }
+    catch (e) {
+      console.log("Failed creating.");
+      console.log(e);
+    }
+  }
 
-    return calendars;
+  async update<T>(dataEntityInstance: T): Promise<T | undefined> {
+    try {
+      const result = await this.connection.manager.save<T>(dataEntityInstance);
+      console.log("Succesfully updated.");
+      return result;
+    }
+    catch (e) {
+      console.log("Failed updating.");
+      console.log(e);
+    }
   }
 
 

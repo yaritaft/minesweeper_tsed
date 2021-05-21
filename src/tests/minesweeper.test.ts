@@ -28,7 +28,7 @@ describe("MATRIX", ()=>{
     jest.spyOn(game, "generateRandomMineCells").mockReturnValue([{ x: 2, y: 3 }]);
     const newGame = game.createNewGame(1, 4, 4);
     console.log(game.generateRandomMineCells(1,2,3))
-    game.setCellStatus(newGame.matrix.matrix, 1,3, CellState.Flagged)
+    game.setCellStatus(newGame.matrix, 1,3, CellState.Flagged)
     game.clickCell(newGame, 0, 0);
     game.clickCell(newGame, 1, 0);
     game.clickCell(newGame, 3, 3);
@@ -40,7 +40,7 @@ describe("MATRIX", ()=>{
     jest.spyOn(game, "generateRandomMineCells").mockReturnValue([{ x: 2, y: 3 }]);
     const newGame = game.createNewGame(1, 4, 4);
     console.log(game.generateRandomMineCells(1,2,3))
-    game.setCellStatus(newGame.matrix.matrix, 1,3, CellState.Question)
+    game.setCellStatus(newGame.matrix, 1,3, CellState.Question)
     game.clickCell(newGame, 0, 0);
     game.clickCell(newGame, 1, 0);
     game.clickCell(newGame, 3, 3);

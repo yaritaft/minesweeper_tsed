@@ -26,21 +26,25 @@ export enum CellState {
   @Entity()
   export class Game {
     @PrimaryGeneratedColumn("uuid")
-    gameId: string;
+    gameId?: string;
     @Column({type: 'jsonb', nullable: true})
-    matrix?: {
-      matrix: Cell[][] 
-    };
+    matrix?: Cell[][] 
     @Column()
     state: GameState;
     @Column()
     amountOfMines: number;
     @Column()
     userId: string;
-    @Column()
-    secondsElapsed: number;
+    @Column({nullable: true})
+    secondsElapsed?: number;
+    @Column({nullable: true})
+    secondsStopped?: number;
     @Column()
     createdAt: Date;
-    @Column()
+    @Column({nullable: true})
     finishedAt?: Date;
+    @Column({nullable: true})
+    stoppedAt?: Date;
+    @Column({nullable: true})
+    resumedAt?: Date;
   }
