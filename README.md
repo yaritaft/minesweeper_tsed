@@ -86,12 +86,11 @@ The core application service is tested with Integration testing, to make sure th
 - Typescript
 - Prettier
 
-### Security Concerns and Improvements to be done
+### Security
 
 - JWT and sessions must be implemented to improve the authentications. Also cognito would be useful to avoid storing the password in the database. To improve the basic Security applied, the password field has a base64 encoded userid+salt+password. The salt is also stored in the database on the user record.
 - Token expiration also can be applied by using cognito.
 - JSON validators may be applied to validate proper data input. AJV or Yup may be good choices.
-- Frontend
 
 ### Exercise
 
