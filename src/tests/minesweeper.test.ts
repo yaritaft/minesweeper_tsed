@@ -1,4 +1,4 @@
-import { GameCoreService, InvalidGameError } from '../core/GameCore';
+import { GameCoreService } from '../core/GameCore';
 import { CellState, GameState } from '../models/Game.entity';
   
 describe("MATRIX", ()=>{
@@ -6,7 +6,7 @@ describe("MATRIX", ()=>{
     // const mockFn = (amountOfMines: number, rows: number, columns: number) => ;
     const game = new GameCoreService();
     jest.spyOn(game, "generateRandomMineCells").mockReturnValue([{ x: 2, y: 3 }]);
-    const newGame = game.createNewGame(1, 4, 4);
+    const newGame = game.createNewGame(1, 4, 4, "aa");
     console.log(game.generateRandomMineCells(1,2,3))
     game.clickCell(newGame, 0, 0);
     game.clickCell(newGame, 1, 0);
@@ -17,7 +17,7 @@ describe("MATRIX", ()=>{
     // const mockFn = (amountOfMines: number, rows: number, columns: number) => ;
     const game = new GameCoreService();
     jest.spyOn(game, "generateRandomMineCells").mockReturnValue([{ x: 2, y: 3 }]);
-    const newGame = game.createNewGame(1, 4, 4);
+    const newGame = game.createNewGame(1, 4, 4, "aa");
     console.log(game.generateRandomMineCells(1,2,3))
     game.clickCell(newGame, 2, 3);
     expect(newGame.state).toEqual(GameState.Lost);
@@ -26,7 +26,7 @@ describe("MATRIX", ()=>{
     // const mockFn = (amountOfMines: number, rows: number, columns: number) => ;
     const game = new GameCoreService();
     jest.spyOn(game, "generateRandomMineCells").mockReturnValue([{ x: 2, y: 3 }]);
-    const newGame = game.createNewGame(1, 4, 4);
+    const newGame = game.createNewGame(1, 4, 4, "aa");
     console.log(game.generateRandomMineCells(1,2,3))
     game.setCellStatus(newGame.matrix, 1,3, CellState.Flagged)
     game.clickCell(newGame, 0, 0);
@@ -38,7 +38,7 @@ describe("MATRIX", ()=>{
     // const mockFn = (amountOfMines: number, rows: number, columns: number) => ;
     const game = new GameCoreService();
     jest.spyOn(game, "generateRandomMineCells").mockReturnValue([{ x: 2, y: 3 }]);
-    const newGame = game.createNewGame(1, 4, 4);
+    const newGame = game.createNewGame(1, 4, 4, "aa");
     console.log(game.generateRandomMineCells(1,2,3))
     game.setCellStatus(newGame.matrix, 1,3, CellState.Question)
     game.clickCell(newGame, 0, 0);

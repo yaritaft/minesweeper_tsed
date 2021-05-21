@@ -14,8 +14,8 @@ export class GameService {
   constructor(private ormService: ORMService, private gameCoreService: GameCoreService) {
   }
 
-  async createNewGame(rows: number, columns: number, amountOfMines: number): Promise<Game> {
-    const newGame = this.gameCoreService.createNewGame(amountOfMines, rows, columns);
+  async createNewGame(rows: number, columns: number, amountOfMines: number, userId: string): Promise<Game> {
+    const newGame = this.gameCoreService.createNewGame(amountOfMines, rows, columns, userId);
     const repository = this.ormService.connection.getRepository(Game);
     let newGameInstance = new Game();
     newGameInstance = repository.merge(newGameInstance, newGame);

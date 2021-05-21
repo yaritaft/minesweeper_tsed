@@ -6,6 +6,7 @@ import { Game } from "../models/Game.entity";
 import { SessionService } from './SessionService';
 import { User } from "../models/User.entity";
 import { UserCoreService } from "../core/UserCore";
+import { TokenHeader } from "../models/Session.entity";
 
 class WrongPasswordError extends Error {
     constructor(message: string){
@@ -27,7 +28,7 @@ export class UserService {
   constructor(private ormService: ORMService, private sessionService: SessionService, private userCoreService: UserCoreService) {
   }
 
-  async login(email: string, password: string): Promise<{Authentication: string}> {
+  async login(email: string, password: string): Promise<TokenHeader> {
     const userRepository = this.ormService.connection.getRepository(User);
     const user = await userRepository.findOne({ email});
     const storedPassword = this.userCoreService.decodePassword(user);
@@ -38,7 +39,7 @@ export class UserService {
         throw new WrongPasswordError("A wrong password was provided.");
     }    
     const token = await this.sessionService.getTokenByUserId(user.userId);
-    return {Authentication: token};
+    return {authentication: token};
   }
 
   async register( userData: User ): Promise<string> {

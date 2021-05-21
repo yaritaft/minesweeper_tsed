@@ -159,7 +159,7 @@ export class GameCoreService {
     return matrixCells;
   }
 
-  createNewGame(amountOfMines: number, rows: number, columns: number): Game {
+  createNewGame(amountOfMines: number, rows: number, columns: number, userId: string): Game {
     if (!this.validateAmountOfMines(amountOfMines, rows, columns)) {
       throw new InvalidGameError("There are more mines than cells.");
     }
@@ -169,7 +169,7 @@ export class GameCoreService {
       matrix: matrixCellsWithoutMines,
       state: GameState.InProgress,
       amountOfMines,
-      userId: "aaa",
+      userId,
       createdAt: new Date(),
       secondsElapsed: 0,
     };

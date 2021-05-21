@@ -7,3 +7,7 @@ export class Session {
   @Column()
   userId: string;
 }
+
+export interface TokenHeader{
+    authentication: string;
+}
