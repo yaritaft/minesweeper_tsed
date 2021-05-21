@@ -1,0 +1,464 @@
+{
+	"info": {
+		"_postman_id": "4e2ffe3f-9697-40ed-933e-99c64ed118fa",
+		"name": "Minesweeper",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Step 0 - Register User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"dd\",\n    \"lastName\": \"cc\",\n    \"email\": \"myEmail@gmail.com\",\n    \"password\": \"aa\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://still-brushlands-88515.herokuapp.com/api/user/register",
+					"protocol": "https",
+					"host": [
+						"still-brushlands-88515",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"user",
+						"register"
+					],
+					"query": [
+						{
+							"key": "rows",
+							"value": "4",
+							"disabled": true
+						},
+						{
+							"key": "columns",
+							"value": "3",
+							"disabled": true
+						},
+						{
+							"key": "amountOfMines",
+							"value": "2",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Step 1 - Get Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"myEmail@gmail.com\",\n    \"password\": \"aa\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://still-brushlands-88515.herokuapp.com/api/user/login",
+					"protocol": "https",
+					"host": [
+						"still-brushlands-88515",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"user",
+						"login"
+					],
+					"query": [
+						{
+							"key": "rows",
+							"value": "4",
+							"disabled": true
+						},
+						{
+							"key": "columns",
+							"value": "3",
+							"disabled": true
+						},
+						{
+							"key": "amountOfMines",
+							"value": "2",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Step 2 - Create new Game",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authentication",
+						"value": "f6da554f-e89a-4a29-b0bc-81caf08b4226",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "authentication",
+						"value": "3a29b402-fe55-468d-9da6-3dacc55be8db",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"rows\": 1,\n    \"columns\": 1,\n    \"amountOfMines\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://still-brushlands-88515.herokuapp.com/api/games/",
+					"protocol": "https",
+					"host": [
+						"still-brushlands-88515",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"games",
+						""
+					],
+					"query": [
+						{
+							"key": "rows",
+							"value": "4",
+							"disabled": true
+						},
+						{
+							"key": "columns",
+							"value": "3",
+							"disabled": true
+						},
+						{
+							"key": "amountOfMines",
+							"value": "2",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Step 3 - Click cells",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "authentication",
+						"value": "3a29b402-fe55-468d-9da6-3dacc55be8db",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"x\": 0,\n    \"y\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://still-brushlands-88515.herokuapp.com/api/games/d37056ef-f20b-4f45-8bff-f5171edf1c1d/click",
+					"protocol": "https",
+					"host": [
+						"still-brushlands-88515",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"games",
+						"d37056ef-f20b-4f45-8bff-f5171edf1c1d",
+						"click"
+					],
+					"query": [
+						{
+							"key": "rows",
+							"value": "4",
+							"disabled": true
+						},
+						{
+							"key": "columns",
+							"value": "3",
+							"disabled": true
+						},
+						{
+							"key": "amountOfMines",
+							"value": "2",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Step 4 - Save or Restor Game",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "authentication",
+						"value": "3a29b402-fe55-468d-9da6-3dacc55be8db",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://still-brushlands-88515.herokuapp.com/api/games/d37056ef-f20b-4f45-8bff-f5171edf1c1d/state",
+					"protocol": "https",
+					"host": [
+						"still-brushlands-88515",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"games",
+						"d37056ef-f20b-4f45-8bff-f5171edf1c1d",
+						"state"
+					],
+					"query": [
+						{
+							"key": "rows",
+							"value": "4",
+							"disabled": true
+						},
+						{
+							"key": "columns",
+							"value": "3",
+							"disabled": true
+						},
+						{
+							"key": "amountOfMines",
+							"value": "2",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Gather ongoing games",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authentication",
+						"value": "3a29b402-fe55-468d-9da6-3dacc55be8db",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"rows\": 1,\n    \"columns\": 1,\n    \"amountOfMines\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://still-brushlands-88515.herokuapp.com/api/games/ongoing",
+					"protocol": "https",
+					"host": [
+						"still-brushlands-88515",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"games",
+						"ongoing"
+					],
+					"query": [
+						{
+							"key": "rows",
+							"value": "4",
+							"disabled": true
+						},
+						{
+							"key": "columns",
+							"value": "3",
+							"disabled": true
+						},
+						{
+							"key": "amountOfMines",
+							"value": "2",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Gather all games",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authentication",
+						"value": "3a29b402-fe55-468d-9da6-3dacc55be8db",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"rows\": 1,\n    \"columns\": 1,\n    \"amountOfMines\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://still-brushlands-88515.herokuapp.com/api/games/",
+					"protocol": "https",
+					"host": [
+						"still-brushlands-88515",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"games",
+						""
+					],
+					"query": [
+						{
+							"key": "rows",
+							"value": "4",
+							"disabled": true
+						},
+						{
+							"key": "columns",
+							"value": "3",
+							"disabled": true
+						},
+						{
+							"key": "amountOfMines",
+							"value": "2",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Gather specific game",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authentication",
+						"value": "3a29b402-fe55-468d-9da6-3dacc55be8db",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"rows\": 1,\n    \"columns\": 1,\n    \"amountOfMines\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://still-brushlands-88515.herokuapp.com/api/games/409f98d3-600d-4a62-90e9-9e09506e5183",
+					"protocol": "https",
+					"host": [
+						"still-brushlands-88515",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"games",
+						"409f98d3-600d-4a62-90e9-9e09506e5183"
+					],
+					"query": [
+						{
+							"key": "rows",
+							"value": "4",
+							"disabled": true
+						},
+						{
+							"key": "columns",
+							"value": "3",
+							"disabled": true
+						},
+						{
+							"key": "amountOfMines",
+							"value": "2",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
