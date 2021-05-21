@@ -20,13 +20,17 @@ https://github.com/yaritaft/
 ### Decisions
 #### Architecture
 
-The architecture of this project was made by doing TDD and conceptos from DDD (domain driven design). The idea is to have a decoupled
-architecture, that is why the core service is framework agnostic. Moreover, that is why every service is injectable, even the database.
+The architecture of this project was made by applying TDD and concepts from DDD (domain driven design). The idea is to have a decoupled architecture. That is why the core service is framework agnostic. Moreover, every service is injectable, even the ORM and database.
 The database can be replaced by modifying the ORM service without having to modify the rest of the code.( If interfaces are followed).
+
+The app is splitted into three different services:
+- Session ( manages sessions and okens)
+- Game (manages game data, create new game, view games, updated games, save, restore)
+- User (manages User data, login, register)
 
 #### Language
 
-Typescript was selected because of it's interoperability with backend and frontend and it's safety regarding stacic type checks.
+Typescript was selected because of its interoperability with backend and frontend and its safety regarding stacic type checks.
 
 #### Database
 
@@ -34,7 +38,7 @@ The database selected was postgres because It is easy to use and deploy with doc
 
 #### Framework
 
-TSED was selected because of it's lightweightness, it's decorators and it's native object oriented concepts such as injecting services.
+TSED was selected because of it's lightweightness, its decorators and its native object oriented concepts such as injecting services.
 
 #### Deployment
 
@@ -57,7 +61,7 @@ git push heroku master
 
 ### DataStructure
 
-![](https://github.com/yaritaft/minesweeper_tsed/blob/master/documentation/Selection_248.png)
+![](https://github.com/yaritaft/minesweeper_tsed/blob/master/documentation/DB.jpg)
 
 ### Testing
 
@@ -69,11 +73,12 @@ The core application service is tested with Integration testing, to make sure th
 - Typescript
 - Prettier
 
-### Security Concerns
+### Security Concerns and Improvements to be done
 
-JWT and sessions must be implemented to improve the authentications. Also cognito would be useful to avoid storing the password in the database.
-To improve the basic Security applied, the password field has a base64 encoded password + salt.
-The salt is also stored in the database on the user record.
+- JWT and sessions must be implemented to improve the authentications. Also cognito would be useful to avoid storing the password in the database. To improve the basic Security applied, the password field has a base64 encoded userid+salt+password. The salt is also stored in the database on the user record.
+- Token expiration also can be applied by using cognito.
+- JSON validators may be applied to validate proper data input. AJV or Yup may be good choices.
+- Frontend
 
 ### Exercise
 
