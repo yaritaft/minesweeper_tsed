@@ -1,7 +1,12 @@
 import "reflect-metadata";
 import { Cell, CellCoordinates, CellState, Game, GameState } from "../models/Game.entity";
 
-
+export class InvalidGameError extends Error {
+  constructor(message: string){
+    super(message);
+    this.name = "InvalidGameError";
+  }
+}
 export class GameCoreService {
   updateElapsedTime(game: Game): Game {
     const elapsedTime = game.secondsElapsed ?? 0;
@@ -156,7 +161,7 @@ export class GameCoreService {
 
   createNewGame(amountOfMines: number, rows: number, columns: number): Game {
     if (!this.validateAmountOfMines(amountOfMines, rows, columns)) {
-      throw new Error("Invalid danger probability.");
+      throw new InvalidGameError("There are more mines than cells.");
     }
     const randomCells = this.generateRandomMineCells(amountOfMines, rows, columns);
     const matrixCellsWithoutMines = this.createMatrixCellsWithoutMines(rows, columns);

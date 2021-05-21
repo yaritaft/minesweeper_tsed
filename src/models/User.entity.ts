@@ -1,16 +1,19 @@
 import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+
 @Entity()
 export class User {
   @PrimaryGeneratedColumn("uuid")
-  userId: string;
+  userId?: string;
   @Column()
   firstName: string;
   @Column()
   lastName: string;
-  @Column()
+  @Column({unique: true})
   email: string;
-  @Column()
-  password: string;
-  @Column()
-  createdAt: Date;
+  @Column({nullable: true})
+  password?: string;
+  @Column({default: new Date()})
+  createdAt?: Date;
+  @Column({nullable: true})
+  salt?: string;
 }

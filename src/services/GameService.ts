@@ -1,11 +1,9 @@
 import { Service } from "@tsed/di";
 import { Injectable } from "@tsed/common";
 import { Connection, Repository } from "typeorm";
-import { Calendar } from "../models/Calendar.entity";
-
 import "reflect-metadata";
 import { ORMService } from "./ORMService";
-import { Cell, CellCoordinates, CellState, Game, GameState } from "../models/Game.entity";
+import { Game, GameState } from "../models/Game.entity";
 import { GameCoreService } from "../core/GameCore";
 
 @Service()

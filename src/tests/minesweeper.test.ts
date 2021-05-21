@@ -1,4 +1,4 @@
-import { GameCoreService } from '../core/GameCore';
+import { GameCoreService, InvalidGameError } from '../core/GameCore';
 import { CellState, GameState } from '../models/Game.entity';
   
 describe("MATRIX", ()=>{
