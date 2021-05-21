@@ -44,14 +44,26 @@ TSED was selected because of it's lightweightness, its decorators and its native
 
 Heroku was selected as cloud provider because it is really easy to use, with Procfile written the rest of the job is automatically done.
 
+### Postman
+
+A postman collection is stored in documentation folder. By importing the collecting it is possible to
+see examples of how to do the different kind of requests.
+
 ### How to run tests locally:
 Create a .env file by copy and pasting .envdevcopy file content.
 ```
 chmod 711 ./up
 ./up
-npm run test
+npm install && npm run test
 ```
 
+### How to run the app locally:
+Create a .env file by copy and pasting .envdevcopy file content.
+```
+chmod 711 ./up
+./up
+npm install && npm start
+```
 
 ### How to deploy (dev notes)
 With changes, commit them and do:
