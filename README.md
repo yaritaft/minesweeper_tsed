@@ -92,6 +92,7 @@ The core application service is tested with Integration testing, to make sure th
 - Token expiration also can be applied by using cognito.
 - JSON validators may be applied to validate proper data input. AJV or Yup may be good choices.
 
+===============================================================================
 ### Exercise
 
 API test
