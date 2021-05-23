@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"dd\",\n    \"lastName\": \"cc\",\n    \"email\": \"myEmail@gmail.com\",\n    \"password\": \"aa\"\n}",
+					"raw": "{\n    \"firstName\": \"dd\",\n    \"lastName\": \"cc\",\n    \"email\": \"myEmail222@gmail.com\",\n    \"password\": \"aa\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -60,7 +60,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"myEmail@gmail.com\",\n    \"password\": \"aa\"\n}",
+					"raw": "{\n    \"email\": \"myEmail222@gmail.com\",\n    \"password\": \"aa\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -113,14 +113,14 @@
 						"disabled": true
 					},
 					{
-						"key": "authorization",
+						"key": "Authentication",
 						"value": "f6da554f-e89a-4a29-b0bc-81caf08b4226",
 						"type": "text",
 						"disabled": true
 					},
 					{
 						"key": "authorization",
-						"value": "3a29b402-fe55-468d-9da6-3dacc55be8db",
+						"value": "56ff3775-ac10-407b-8441-f7456cb094df",
 						"type": "text"
 					}
 				],
@@ -174,7 +174,7 @@
 				"header": [
 					{
 						"key": "authorization",
-						"value": "3a29b402-fe55-468d-9da6-3dacc55be8db",
+						"value": "56ff3775-ac10-407b-8441-f7456cb094df",
 						"type": "text"
 					}
 				],
@@ -188,7 +188,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://still-brushlands-88515.herokuapp.com/api/games/d37056ef-f20b-4f45-8bff-f5171edf1c1d/click",
+					"raw": "https://still-brushlands-88515.herokuapp.com/api/games/23b10b53-6caa-440b-9d17-238aba4bd58e/click",
 					"protocol": "https",
 					"host": [
 						"still-brushlands-88515",
@@ -198,7 +198,7 @@
 					"path": [
 						"api",
 						"games",
-						"d37056ef-f20b-4f45-8bff-f5171edf1c1d",
+						"23b10b53-6caa-440b-9d17-238aba4bd58e",
 						"click"
 					],
 					"query": [
