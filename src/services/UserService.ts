@@ -31,11 +31,10 @@ export class UserService {
   async login(email: string, password: string): Promise<TokenHeader> {
     const userRepository = this.ormService.connection.getRepository(UserEntity);
     const user = await userRepository.findOne({ email });
-    const storedPassword = this.userCoreService.decodePassword(user);
     if (!user) {
       throw new WrongEmailError("A wrong email was provided.");
     }
-    if (storedPassword !== password) {
+    if (!this.userCoreService.checkSameHashedPassword(password, user)) {
       throw new WrongPasswordError("A wrong password was provided.");
     }
     const token = await this.sessionService.getTokenByUserId(user.userId);
@@ -45,7 +44,7 @@ export class UserService {
   async register(userData: User): Promise<{userId: string}> {
     const repository = this.ormService.connection.getRepository(UserEntity);
     const userWithoutPassword = await this.ormService.upsert<User>(repository, userData);
-    const userWithPassword = this.userCoreService.addEncodedPassword(userWithoutPassword);
+    const userWithPassword = await this.userCoreService.addEncodedPassword(userWithoutPassword);
     const result = await this.ormService.upsert<User>(repository, userWithPassword);
     const token = await this.sessionService.generateToken(result.userId);
     console.log("User registered.");

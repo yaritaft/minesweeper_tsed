@@ -1,20 +1,22 @@
 import { User } from "../models/User";
+import { hashSync, genSaltSync } from "bcrypt-nodejs";
 
 export class UserCoreService {
-    private generateSalt(): string {
-        return String(Math.floor(Math.random()*10000000));
-    }
+  async addEncodedPassword(user: User): Promise<User> {
+    const salt = await genSaltSync(10);
+    user.salt = salt;
+    user.password = await hashSync(user.password, user.salt);
+    return user;
+  }
 
-    addEncodedPassword(user: User): User {
-      user.salt = this.generateSalt();
-      user.password = Buffer.from(user.userId+user.salt+user.password).toString('base64');
-      return user;
-    }
+  checkSameHashedPassword(attemptingPassword: string, userStored: User): Boolean {
+    const hashedPassword = userStored.password;
+    const hashedAttemptingPassword = hashSync(attemptingPassword, userStored.salt);
+    return hashedPassword === hashedAttemptingPassword;
+  }
 
-    decodePassword(user: User): string {
-        const rawPassword = Buffer.from(user.password, 'base64').toString();
-        const prefix = user.userId + user.salt;
-        const password = rawPassword.substr(prefix.length);
-        return password;
-    }
-}  
+  decodePassword(user: User): string {
+    const hashedPassword = hashSync(user.password, user.salt);
+    return hashedPassword;
+  }
+}
