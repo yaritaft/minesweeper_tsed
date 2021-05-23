@@ -2,12 +2,7 @@ import { PlatformTest } from "@tsed/common";
 import * as SuperTest from "supertest";
 import { Server } from "../../server";
 import { TypeORMService } from "@tsed/typeorm";
-import { ORMService } from "../../services/ORMService";
 import { GameState } from "../../models/Game";
-
-const config = require("dotenv").config({ path: "./.env" });
-const baseUrl = process.env.TEST_URL;
-const registerPath = baseUrl + "/user/register/";
 
 describe("Rest", () => {
   // bootstrap your Server to load all endpoints before run your test

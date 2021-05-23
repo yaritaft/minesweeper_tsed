@@ -2,7 +2,6 @@ import "reflect-metadata";
 import { Service } from "@tsed/di";
 import { Injectable } from "@tsed/common";
 import { ORMService } from "./ORMService";
-import { Game } from "../models/Game";
 import { SessionService } from "./SessionService";
 import { User } from "../models/User";
 import { UserCoreService } from "../core/UserCore";

@@ -1,5 +1,5 @@
 import { User } from "../models/User";
-import {EntitySchema, EntitySchemaColumnOptions} from "typeorm";
+import { EntitySchema } from "typeorm";
 
 export const UserEntity = new EntitySchema<User>({
   name: "User",
@@ -8,29 +8,29 @@ export const UserEntity = new EntitySchema<User>({
     userId: {
       type: String,
       primary: true,
-      generated: "uuid"
+      generated: "uuid",
     },
     firstName: {
-      type: String
+      type: String,
     },
     lastName: {
-      type: String
+      type: String,
     },
     email: {
       type: String,
-      unique: true
+      unique: true,
     },
     password: {
       type: String,
-      nullable: true
+      nullable: true,
     },
     createdAt: {
       type: Date,
-      default: new Date()
+      default: new Date(),
     },
     salt: {
       type: String,
-      nullable: true
-    }
-  }
+      nullable: true,
+    },
+  },
 });

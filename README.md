@@ -52,15 +52,15 @@ A postman collection is stored in documentation folder. By importing the collect
 see examples of how to do the different kind of requests.
 
 ### How to run tests locally:
-Create a .env file by copy and pasting .envdevcopy file content.
+Create a .env file by copy and pasting .envdevcopy file content. Use the testing variable.
 ```
 chmod 711 ./up
-./up
+./uptests.sh
 npm install && npm run test
 ```
 
 ### How to run the app locally:
-Create a .env file by copy and pasting .envdevcopy file content.
+Create a .env file by copy and pasting .envdevcopy file content. Use the dev variable.
 ```
 chmod 711 ./up
 ./up
@@ -79,7 +79,8 @@ git push heroku master
 
 ### Testing
 
-The core application service is tested with Integration testing, to make sure the core application service remains working properly after applying new changes.
+- The core application service is tested with Integration testing, to make sure the core application service remains working properly after applying new changes.
+- Integration testing is also implemented to test the whole api through rest requests.
 
 ### Code formatter and Standards
 
@@ -90,7 +91,7 @@ The core application service is tested with Integration testing, to make sure th
 ### Security
 Security things that can be improved.
 
-Passwords are not being stored. It is being stored the hash of a password + randomsalt (10 rounds). Then when the user try to log in the only thing checked is that the hash applying the same function is the same.
+Passwords are not being stored. It is being stored the hash of a password + random salt (10 rounds). Then when the user try to log in the only thing checked is that the hash applying the same function is the same.
 
 - JWT and sessions must be implemented to improve the authorizations. Also cognito would be useful to avoid storing the password in the database.
 - Token expiration also can be applied by using cognito.
@@ -99,7 +100,6 @@ Passwords are not being stored. It is being stored the hash of a password + rand
 ### Improvements
 Things that can be improved.
 
-- Add testing for the whole application (by doing actual requests)
 - Add frontend
 - Add swagger
 

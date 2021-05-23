@@ -1,7 +1,6 @@
 import "reflect-metadata";
 import { Service } from "@tsed/di";
 import { Injectable } from "@tsed/common";
-import { Connection } from "typeorm";
 import { ORMService } from "./ORMService";
 import { SessionEntity } from "../entities/Session.entity";
 
