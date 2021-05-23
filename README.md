@@ -54,7 +54,7 @@ see examples of how to do the different kind of requests.
 ### How to run tests locally:
 Create a .env file by copy and pasting .envdevcopy file content. Use the testing variable.
 ```
-chmod 711 ./up
+chmod 711 ./uptests.sh
 ./uptests.sh
 npm install && npm run test
 ```
@@ -62,8 +62,8 @@ npm install && npm run test
 ### How to run the app locally:
 Create a .env file by copy and pasting .envdevcopy file content. Use the dev variable.
 ```
-chmod 711 ./up
-./up
+chmod 711 ./up.sh
+./up.sh
 npm install && npm start
 ```
 
