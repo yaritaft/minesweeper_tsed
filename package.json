@@ -32,7 +32,8 @@
     "@tsed/json-mapper": "6.11.3",
     "@tsed/schema": "6.11.3",
     "@tsed/swagger": "6.11.3",
-    "@tsed/typeorm": "^6.48.6",
+    "@tsed/platform-express": "6.11.3",
+    "@tsed/typeorm": "6.11.3",
     "@types/swagger-schema-official": "2.0.21",
     "bcrypt": "^5.0.1",
     "bcrypt-nodejs": "0.0.3",
@@ -47,8 +48,7 @@
     "pg": "^8.6.0",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.32",
-    "uuid": "8.3.0",
-    "@tsed/platform-express": "6.7"
+    "uuid": "8.3.0"
   },
   "devDependencies": {
     "@types/chai": "4.2.12",
