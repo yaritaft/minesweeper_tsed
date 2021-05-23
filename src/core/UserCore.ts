@@ -14,9 +14,4 @@ export class UserCoreService {
     const hashedAttemptingPassword = hashSync(attemptingPassword, userStored.salt);
     return hashedPassword === hashedAttemptingPassword;
   }
-
-  decodePassword(user: User): string {
-    const hashedPassword = hashSync(user.password, user.salt);
-    return hashedPassword;
-  }
 }
