@@ -90,7 +90,9 @@ The core application service is tested with Integration testing, to make sure th
 ### Security
 Security things that can be improved.
 
-- JWT and sessions must be implemented to improve the authorizations. Also cognito would be useful to avoid storing the password in the database. To improve the basic Security applied, the password field has a base64 encoded userid+salt+password. The salt is also stored in the database on the user record.
+Passwords are not being stored. It is being stored the hash of a password + randomsalt (10 rounds). Then when the user try to log in the only thing checked is that the hash applying the same function is the same.
+
+- JWT and sessions must be implemented to improve the authorizations. Also cognito would be useful to avoid storing the password in the database.
 - Token expiration also can be applied by using cognito.
 - JSON validators may be applied to validate proper data input. AJV or Yup may be good choices.
 
