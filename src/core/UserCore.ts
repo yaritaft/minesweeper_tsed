@@ -1,4 +1,4 @@
-import { User } from "../models/User.entity";
+import { User } from "../models/User";
 
 export class UserCoreService {
     private generateSalt(): string {

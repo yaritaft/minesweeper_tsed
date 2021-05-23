@@ -1,6 +1,6 @@
 import {BodyParams, Controller, Inject, Post} from "@tsed/common";
-import { TokenHeader } from "../models/Session.entity";
-import { User } from "../models/User.entity";
+import { TokenHeader } from "../models/Session";
+import { User } from "../models/User";
 import { UserService } from '../services/UserService';
 
 @Controller("/user")

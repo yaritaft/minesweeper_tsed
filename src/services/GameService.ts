@@ -3,8 +3,9 @@ import { Injectable } from "@tsed/common";
 import { Connection, Repository } from "typeorm";
 import "reflect-metadata";
 import { ORMService } from "./ORMService";
-import { Game, GameState } from "../models/Game.entity";
+import { Game, GameState } from "../models/Game";
 import { GameCoreService } from "../core/GameCore";
+import { GameEntity } from '../entities/Game.entity';
 
 @Service()
 @Injectable()
@@ -16,32 +17,32 @@ export class GameService {
 
   async createNewGame(rows: number, columns: number, amountOfMines: number, userId: string): Promise<Game> {
     const newGame = this.gameCoreService.createNewGame(amountOfMines, rows, columns, userId);
-    const repository = this.ormService.connection.getRepository(Game);
+    const repository = this.ormService.connection.getRepository(GameEntity);
     let newGameInstance = new Game();
     newGameInstance = repository.merge(newGameInstance, newGame);
-    const result = await this.ormService.upsert<Game>(newGameInstance);
+    const result = await this.ormService.upsert<Game>(repository, newGameInstance);
     return result;
   }
 
   async clickCell(gameId: string, x: number, y: number): Promise<Game> {
-    const repository = this.ormService.connection.getRepository(Game);
+    const repository = this.ormService.connection.getRepository(GameEntity);
     const game = await repository.findOneOrFail({gameId});
     const updatedGame = this.gameCoreService.clickCell(game, x, y);
-    await this.ormService.upsert<Game>(updatedGame);
+    await this.ormService.upsert<Game>(repository, updatedGame);
     return updatedGame;
   }
 
   async switchState(gameId: string): Promise<Game> {
-    const repository = this.ormService.connection.getRepository(Game);
+    const repository = this.ormService.connection.getRepository(GameEntity);
     const game = await repository.findOneOrFail({gameId})
     if(game.state === GameState.Stopped){
       const updatedGame = this.gameCoreService.resumeGame(game);
-      await this.ormService.upsert<Game>(updatedGame);
+      await this.ormService.upsert<Game>(repository, updatedGame);
       return updatedGame;
     }
     else if(game.state === GameState.InProgress){
       const updatedGame = this.gameCoreService.stopGame(game);
-      await this.ormService.upsert<Game>(updatedGame);
+      await this.ormService.upsert<Game>(repository, updatedGame);
       return updatedGame;
     }
     else {

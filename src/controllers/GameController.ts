@@ -1,6 +1,6 @@
 import {Controller, Get, Patch, Post, BodyParams, Inject, PathParams, HeaderParams} from "@tsed/common";
-import { Game } from "../models/Game.entity";
-import { TokenHeader } from "../models/Session.entity";
+import { Game } from "../models/Game";
+import { TokenHeader } from "../models/Session";
 import { GameService } from "../services/GameService";
 import { SessionService } from '../services/SessionService';
 

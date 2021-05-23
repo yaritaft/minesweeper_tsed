@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { Cell, CellCoordinates, CellState, Game, GameState } from "../models/Game.entity";
+import { Cell, CellCoordinates, CellState, Game, GameState } from "../models/Game";
 
 export class InvalidGameError extends Error {
   constructor(message: string){
