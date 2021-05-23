@@ -9,7 +9,7 @@ export class UserController {
   userService: UserService;
 
   @Post("/register")
-  async register(@BodyParams() body: User): Promise<string> {
+  async register(@BodyParams() body: User): Promise<{userId: string}> {
     const userId = await this.userService.register(body);
     return userId;
   }

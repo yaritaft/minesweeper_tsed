@@ -4,5 +4,5 @@ export class Session {
 }
 
 export interface TokenHeader{
-    authentication: string;
+    authorization: string;
 }

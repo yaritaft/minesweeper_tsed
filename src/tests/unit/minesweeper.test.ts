@@ -1,5 +1,5 @@
-import { GameCoreService } from '../core/GameCore';
-import { CellState, GameState } from '../models/Game';
+import { GameCoreService } from '../../core/GameCore';
+import { CellState, GameState } from '../../models/Game';
   
 describe("MATRIX", ()=>{
   test('Create new Game and Win', () => {

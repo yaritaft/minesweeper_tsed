@@ -7,7 +7,7 @@
         "type": "node",
         "request": "launch",
         "name": "Debug Application (TS)",
-        "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/tsnd",
+        "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/ts-node",
         "windows": {
           "type": "node",
           "request": "launch",

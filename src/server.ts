@@ -1,13 +1,29 @@
 import {Configuration, Inject, PlatformApplication} from "@tsed/common";
+import * as cors from "cors";
 import * as bodyParser from "body-parser";
 import * as compress from "compression";
 import * as cookieParser from "cookie-parser";
+import  "@tsed/platform-express";
 import * as methodOverride from "method-override";
 import "@tsed/typeorm";
 const config = require("dotenv").config({path: "./.env"});
 
 
 const rootDir = __dirname;
+
+
+const whitelist = ['127.0.0.1:80']
+const corsOptions = {
+  credentials: true,
+  origin: function (origin, callback) {
+    console.log(origin)
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true)
+    } else {
+      callback(new Error('Domain not allowed by CORS'))
+    }
+  }
+}
 
 @Configuration({
   rootDir,
@@ -53,6 +69,7 @@ export class Server {
     this.app
       .use(cookieParser())
       .use(compress({}))
+       .use(cors(corsOptions))
       .use(methodOverride())
       .use(bodyParser.json())
       .use(bodyParser.urlencoded({

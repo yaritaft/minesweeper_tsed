@@ -64,7 +64,7 @@ export class GameService {
 
   async findAllNotFinished(userId: string):Promise<Game[]> {
     const repository = this.ormService.connection.getRepository(Game);
-    const games = await repository.find({where: [{state: GameState.InProgress}, {state: GameState.Stopped}]});
+    const games = await repository.find({where: [{state: GameState.Stopped}]});
     return games;
   }
 }

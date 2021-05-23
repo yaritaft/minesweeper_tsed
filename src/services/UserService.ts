@@ -39,16 +39,16 @@ export class UserService {
       throw new WrongPasswordError("A wrong password was provided.");
     }
     const token = await this.sessionService.getTokenByUserId(user.userId);
-    return { authentication: token };
+    return { authorization: token };
   }
 
-  async register(userData: User): Promise<string> {
+  async register(userData: User): Promise<{userId: string}> {
     const repository = this.ormService.connection.getRepository(UserEntity);
     const userWithoutPassword = await this.ormService.upsert<User>(repository, userData);
     const userWithPassword = this.userCoreService.addEncodedPassword(userWithoutPassword);
     const result = await this.ormService.upsert<User>(repository, userWithPassword);
     const token = await this.sessionService.generateToken(result.userId);
     console.log("User registered.");
-    return `userId: ${result.userId}`;
+    return {userId: result.userId};
   }
 }

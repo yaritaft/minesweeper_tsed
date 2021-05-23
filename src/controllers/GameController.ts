@@ -14,28 +14,30 @@ export class GameController {
   @Post()
   async createNewGame(@BodyParams() body: {rows: number, columns: number, amountOfMines: number}, @HeaderParams() header: TokenHeader): Promise<Game | undefined> {
     const {rows, columns, amountOfMines} = body;
-    const userId = await this.sessionService.gatherUserIdByToken(header.authentication);
+    const token = header["authorization"];
+    console.log(header)
+    const userId = await this.sessionService.gatherUserIdByToken(token);
     const result = await this.gameService.createNewGame(rows, columns, amountOfMines, userId);
     return result;
   }
 
   @Get()
   async findAll(@HeaderParams() header: TokenHeader): Promise<Game[]> {
-    const userId = await this.sessionService.gatherUserIdByToken(header.authentication);
+    const userId = await this.sessionService.gatherUserIdByToken(header.authorization);
     const result = await this.gameService.findAll(userId);
     return result;
   }
   
   @Get("/ongoing")
   async findAllNotFinished(@HeaderParams() header: TokenHeader): Promise<Game[]> {
-    const userId = await this.sessionService.gatherUserIdByToken(header.authentication);
+    const userId = await this.sessionService.gatherUserIdByToken(header.authorization);
     const result = await this.gameService.findAllNotFinished(userId);
     return result;
   }
 
   @Get("/:id")
   async find(@HeaderParams() header: TokenHeader, @PathParams() params: {id: string}): Promise<Game> {
-    const userId = await this.sessionService.gatherUserIdByToken(header.authentication);
+    const userId = await this.sessionService.gatherUserIdByToken(header.authorization);
     const result = await this.gameService.findOne(params.id,userId);
     return result;
   }

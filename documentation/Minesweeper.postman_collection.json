@@ -113,13 +113,13 @@
 						"disabled": true
 					},
 					{
-						"key": "Authentication",
+						"key": "authorization",
 						"value": "f6da554f-e89a-4a29-b0bc-81caf08b4226",
 						"type": "text",
 						"disabled": true
 					},
 					{
-						"key": "authentication",
+						"key": "authorization",
 						"value": "3a29b402-fe55-468d-9da6-3dacc55be8db",
 						"type": "text"
 					}
@@ -173,7 +173,7 @@
 				"method": "PATCH",
 				"header": [
 					{
-						"key": "authentication",
+						"key": "authorization",
 						"value": "3a29b402-fe55-468d-9da6-3dacc55be8db",
 						"type": "text"
 					}
@@ -228,7 +228,7 @@
 				"method": "PATCH",
 				"header": [
 					{
-						"key": "authentication",
+						"key": "authorization",
 						"value": "3a29b402-fe55-468d-9da6-3dacc55be8db",
 						"type": "text"
 					}
@@ -286,7 +286,7 @@
 				"method": "GET",
 				"header": [
 					{
-						"key": "authentication",
+						"key": "authorization",
 						"value": "3a29b402-fe55-468d-9da6-3dacc55be8db",
 						"type": "text"
 					},
@@ -349,7 +349,7 @@
 				"method": "GET",
 				"header": [
 					{
-						"key": "authentication",
+						"key": "authorization",
 						"value": "3a29b402-fe55-468d-9da6-3dacc55be8db",
 						"type": "text"
 					},
@@ -412,7 +412,7 @@
 				"method": "GET",
 				"header": [
 					{
-						"key": "authentication",
+						"key": "authorization",
 						"value": "3a29b402-fe55-468d-9da6-3dacc55be8db",
 						"type": "text"
 					}
