@@ -49,7 +49,7 @@ Heroku was selected as cloud provider because it is really easy to use, with Pro
 ### Postman
 
 A postman collection is stored in documentation folder. By importing the collecting it is possible to
-see examples of how to do the different kind of requests.
+see examples of how to do the different kind of requests. You can find it here /documentation/PROD_Collection_Ṕostman.json .
 
 ### How to run tests locally:
 Create a .env file by copy and pasting .envdevcopy file content. Use the testing variable.
