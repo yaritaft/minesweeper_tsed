@@ -12,7 +12,7 @@ const config = require("dotenv").config({path: "./.env"});
 const rootDir = __dirname;
 
 
-const whitelist = ['127.0.0.1:80']
+const whitelist = ['127.0.0.1:80', "0.0.0.0:8080", "localhost:3000", "http://localhost:3000"]
 const corsOptions = {
   credentials: true,
   origin: function (origin, callback) {
