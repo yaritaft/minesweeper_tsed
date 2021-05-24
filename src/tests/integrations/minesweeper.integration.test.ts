@@ -2,7 +2,7 @@ import { PlatformTest } from "@tsed/common";
 import * as SuperTest from "supertest";
 import { Server } from "../../server";
 import { TypeORMService } from "@tsed/typeorm";
-import { GameState } from "../../models/Game";
+import { CellState, GameState } from "../../models/Game";
 
 describe("Rest", () => {
   // bootstrap your Server to load all endpoints before run your test
@@ -97,7 +97,34 @@ describe("Rest", () => {
     });
   });
 
-  describe("Patch /games/:id/click", () => {
+  describe("Patch CLICK /games/:id/click", () => {
+    it("Register and loign user, create game and lose game.", async () => {
+      await request.post("/api/user/register").send(bodyRegister).set("Accept", "application/json").expect(200);
+      const response = await request.post("/api/user/login").send(bodyLogin).set("Accept", "application/json").expect(200);
+      const token = JSON.parse(response.text)["authorization"];
+      const newGameData = {
+        rows: 4,
+        columns: 5,
+        amountOfMines: 1,
+      };
+      const newGame = await request
+        .post("/api/games")
+        .send(newGameData)
+        .set("Accept", "application/json")
+        .set("authorization", token)
+        .expect(200);
+      expect(JSON.parse(newGame.text)["matrix"]).toBeTruthy();
+      const updatedGame = await request
+        .patch(`/api/games/${JSON.parse(newGame.text)["gameId"]}/click`)
+        .send({ x: 0, y: 0 })
+        .set("Accept", "application/json")
+        .set("authorization", token)
+        .expect(200);
+        expect(JSON.parse(updatedGame.text)["matrix"][0][0]["state"]).toBe(CellState.Checked);
+    });
+  });
+
+  describe("Patch QUESTION /games/:id/click", () => {
     it("Register and loign user, create game and lose game.", async () => {
       await request.post("/api/user/register").send(bodyRegister).set("Accept", "application/json").expect(200);
       const response = await request.post("/api/user/login").send(bodyLogin).set("Accept", "application/json").expect(200);
@@ -116,11 +143,38 @@ describe("Rest", () => {
       expect(JSON.parse(newGame.text)["matrix"]).toBeTruthy();
       const updatedGame = await request
         .patch(`/api/games/${JSON.parse(newGame.text)["gameId"]}/click`)
-        .send({ x: 0, y: 0 })
+        .send({ x: 0, y: 0, type: "Question" })
         .set("Accept", "application/json")
         .set("authorization", token)
         .expect(200);
-      expect(JSON.parse(updatedGame.text)["state"]).toBe(GameState.Lost);
+      expect(JSON.parse(updatedGame.text)["matrix"][0][0]["state"]).toBe(CellState.Question);
+    });
+  });
+
+  describe("Patch FLAGGED /games/:id/click", () => {
+    it("Register and loign user, create game and lose game.", async () => {
+      await request.post("/api/user/register").send(bodyRegister).set("Accept", "application/json").expect(200);
+      const response = await request.post("/api/user/login").send(bodyLogin).set("Accept", "application/json").expect(200);
+      const token = JSON.parse(response.text)["authorization"];
+      const newGameData = {
+        rows: 1,
+        columns: 1,
+        amountOfMines: 1,
+      };
+      const newGame = await request
+        .post("/api/games")
+        .send(newGameData)
+        .set("Accept", "application/json")
+        .set("authorization", token)
+        .expect(200);
+      expect(JSON.parse(newGame.text)["matrix"]).toBeTruthy();
+      const updatedGame = await request
+        .patch(`/api/games/${JSON.parse(newGame.text)["gameId"]}/click`)
+        .send({ x: 0, y: 0, type: "Flagged" })
+        .set("Accept", "application/json")
+        .set("authorization", token)
+        .expect(200);
+        expect(JSON.parse(updatedGame.text)["matrix"][0][0]["state"]).toBe(CellState.Flagged);
     });
   });
 
@@ -173,15 +227,15 @@ describe("Rest", () => {
         .set("Accept", "application/json")
         .set("authorization", token)
         .expect(200);
-      const createdGame = await request.get("/api/games/ongoing").set("Accept", "application/json").set("authorization", token).expect(200);
-      expect(JSON.parse(createdGame.text)).toHaveLength(0);
+      const onGoingGames = await request.get("/api/games/ongoing").set("Accept", "application/json").set("authorization", token).expect(200);
+      expect(JSON.parse(onGoingGames.text)["games"]).toHaveLength(0);
       await request
         .patch(`/api/games/${JSON.parse(newGame.text)["gameId"]}/state`)
         .set("Accept", "application/json")
         .set("authorization", token)
         .expect(200);
       const stoppedGame = await request.get("/api/games/ongoing").set("Accept", "application/json").set("authorization", token).expect(200);
-      expect(JSON.parse(stoppedGame.text)).toHaveLength(1);
+      expect(JSON.parse(stoppedGame.text)["games"]).toHaveLength(1);
     });
   });
 
@@ -203,7 +257,7 @@ describe("Rest", () => {
         .expect(200);
       expect(JSON.parse(newGame.text)["matrix"]).toBeTruthy();
       const allGames = await request.get("/api/games").set("Accept", "application/json").set("authorization", token).expect(200)
-      expect(JSON.parse(allGames.text)).toHaveLength(1);
+      expect(JSON.parse(allGames.text)["games"]).toHaveLength(1);
     });
   });
 

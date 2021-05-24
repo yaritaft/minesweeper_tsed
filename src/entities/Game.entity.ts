@@ -10,6 +10,10 @@ export const GameEntity = new EntitySchema<Game>({
       primary: true,
       generated: "uuid"
     },
+    userId: {
+      type: "uuid",
+      
+    },
     matrix: {
       type: "jsonb",
       nullable: true
