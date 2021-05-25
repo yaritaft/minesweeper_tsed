@@ -1,4 +1,4 @@
-import {BodyParams, Controller, Inject, Post} from "@tsed/common";
+import {BodyParams, Controller, Get, Inject, Post} from "@tsed/common";
 import { TokenHeader } from "../models/Session";
 import { User } from "../models/User";
 import { UserService } from '../services/UserService';
@@ -18,5 +18,10 @@ export class UserController {
   async login(@BodyParams() body: {email: string, password: string}): Promise<TokenHeader> {
     const token = await this.userService.login(body.email, body.password);
     return token;
+  }
+
+  @Get("/status")
+  async getStatus(): Promise<{}> {
+    return {};
   }
 }
