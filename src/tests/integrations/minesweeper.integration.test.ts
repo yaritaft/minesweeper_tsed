@@ -120,7 +120,7 @@ describe("Rest", () => {
         .set("Accept", "application/json")
         .set("authorization", token)
         .expect(200);
-        expect(JSON.parse(updatedGame.text)["matrix"][0][0]["state"]).toBe(CellState.Checked);
+        expect(JSON.parse(updatedGame.text)["matrix"][0][0]["state"]).toBe(CellState.Checked); // TOOD: SOMETIMES IT FAILS BECAUSE OF THE RANDOM MINE AND WHEN THE GAMES ENDS MATRIX IS UNDEFINED
     });
   });
 
