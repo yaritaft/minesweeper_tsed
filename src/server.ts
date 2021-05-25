@@ -30,7 +30,7 @@ const corsOptions = {
   debug: process.env.PORT === undefined, // to check if it is dev
   // port: process.env.PORT || 8080, // Because heroku automatically sets port.
   httpPort:  process.env.PORT ? `0.0.0.0:0:${process.env.PORT+1}` : "0.0.0.0:8080",
-  httpsPort:  process.env.PORT ? `0.0.0.0:0:${process.env.PORT}` : "0.0.0.0:8081",
+  httpsPort:  process.env.PORT ? `0.0.0.0:0` : undefined,
   acceptMimes: ["application/json"],
   mount: {
     "/api": [`${rootDir}/controllers/*.{ts,js}`] // using componentScan
